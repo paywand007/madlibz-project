@@ -110,10 +110,9 @@ function madLibsPreview(story) {
                 ' ' +
                 '<span   id="output' +
                 i +
-                '"  name="word" disabled placeholder=(' +
+                '  ' +
                 story[i].pos +
-                ')>' +
-                '</span>';
+                +'</span>';
             (' ')
         } else {
             madLibsPreview.innerHTML = madLibsPreview.innerHTML + ' ' + story[i].word
