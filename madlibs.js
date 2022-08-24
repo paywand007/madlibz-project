@@ -75,6 +75,7 @@ function parseStory(rawStory) {
 }
 
 //adding text to edit
+let newArray = []
 
 function madLibsEdit(story) {
     let edit = document.querySelector('.madLibsEdit')
@@ -87,8 +88,9 @@ function madLibsEdit(story) {
             let pos = excerpt.pos
             input.setAttribute('maxlength', '20')
             input.setAttribute('class', 'form-control d-inline-flex col-lg-2 mt-1')
-            input.setAttribute('id', 'inputId')
+            input.setAttribute('id', `inputId${pos}`)
             input.setAttribute('placeholder', `${pos}`)
+            input.setAttribute('onclick', 'printInput(' + pos + '})})')
             p.appendChild(input)
         } else {
             //turning array indexes into text
@@ -108,17 +110,46 @@ function madLibsPreview(story) {
             madLibsPreview.innerHTML =
                 madLibsPreview.innerHTML +
                 ' ' +
-                '<span   id="output' +
+                '<span  id="privewOutput"' +
                 i +
-                '  ' +
-                story[i].pos +
-                +'</span>';
-            (' ')
+                '' +
+                '>'
+
+            '</span>' + ' '
         } else {
             madLibsPreview.innerHTML = madLibsPreview.innerHTML + ' ' + story[i].word
         }
+        //     if (story[i].pos) {
+        //         madLibsPreview.innerHTML =
+        //             madLibsPreview.innerHTML +
+        //             ' ' +
+        //             '<span   id="output' +
+        //             i +
+        //             '  ' +
+        //             story[i].pos +
+        //             +'</span>';
+        //         (' ')
+        //     } else {
+        //         madLibsPreview.innerHTML = madLibsPreview.innerHTML + ' ' + story[i].word
+        //     }
+        // }
     }
 }
+
+function printInput(idNumbers) {
+    let wordInput = document.querySelector('#inputId')
+    let wordOutput = document.querySelector('#privewOutput')
+    wordOutput.innerHTML = wordInput.value
+}
+
+// function changeStyle(wordInput) {
+//     if (wordInput.value) {
+//         wordInput.style.backgroundColor = 'rgba(128, 128, 128, 0.797)'
+//         wordInput.style.color = 'white'
+//     } else {
+//         wordInput.style.backgroundColor = 'none'
+//     }
+// }
 
 getRawStory()
     .then(parseStory)
